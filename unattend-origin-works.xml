@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
+  <!-- Windows PE settings -->
+  <settings pass="windowsPE">
+    <component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+      <SetupUILanguage>
+        <UILanguage>de-DE</UILanguage>
+      </SetupUILanguage>
+      <InputLocale>de-DE</InputLocale>
+      <SystemLocale>de-DE</SystemLocale>
+      <UILanguage>de-DE</UILanguage>
+      <UserLocale>de-DE</UserLocale>
+    </component>
+  </settings>
+
+  <!-- Offline servicing settings -->
+  <settings pass="offlineServicing" />
+
+  <!-- Generalize settings -->
+  <settings pass="generalize">
+    <component name="Microsoft-Windows-PnpSysprep" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+      <PersistAllDeviceInstalls>true</PersistAllDeviceInstalls>
+      <DoNotCleanUpNonPresentDevices>true</DoNotCleanUpNonPresentDevices>
+    </component>
+  </settings>
+
+  <!-- Specialize settings -->
+  <settings pass="specialize">
+    <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+      <RunSynchronous>
+        <!-- Add any scripts or commands you need to run during the specialize pass -->
+      </RunSynchronous>
+    </component>
+    <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+      <TimeZone>W. Europe Standard Time</TimeZone>
+      <ComputerName>*</ComputerName>
+    </component>
+  </settings>
+
+  <!-- OOBE system settings -->
+  <settings pass="oobeSystem">
+    <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+      <InputLocale>de-DE</InputLocale>
+      <SystemLocale>de-DE</SystemLocale>
+      <UILanguage>de-DE</UILanguage>
+      <UserLocale>de-DE</UserLocale>
+    </component>
+    <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+      <OOBE>
+        <HideEULAPage>true</HideEULAPage>
+        <NetworkLocation>Work</NetworkLocation>
+        <ProtectYourPC>3</ProtectYourPC>
+        <SkipMachineOOBE>true</SkipMachineOOBE>
+        <SkipUserOOBE>true</SkipUserOOBE>
+      </OOBE>
+      <UserAccounts>
+        <AdministratorPassword>
+          <Value>1q2W3E4r1q2W3E4r</Value>
+          <PlainText>true</PlainText>
+        </AdministratorPassword>
+        <!-- <LocalAccounts>
+          <LocalAccount wcm:action="add">
+            <Password>
+              <Value>1q2W3E4r1q2W3E4r</Value>
+              <PlainText>true</PlainText>
+            </Password>
+            <Description>Your User Description</Description>
+            <DisplayName>u162071amo</DisplayName>
+            <Group>Administrators</Group>
+            <Name>u162071amo</Name>
+          </LocalAccount>
+        </LocalAccounts> -->
+      </UserAccounts>
+
+    </component>
+  </settings>
+
+  <cpi:offlineImage cpi:source="wim://path/to/your/image.wim#Windows Server 2019 SERVERSTANDARD" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
+</unattend>
